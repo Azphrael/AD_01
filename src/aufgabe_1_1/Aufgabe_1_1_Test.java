@@ -1,4 +1,6 @@
-package aufgabe_1_1;
+
+<!-- saved from url=(0229)https://s3.amazonaws.com/data.teamlab.com/15/82/31/forum/22809/34460/f8993294-eb73-469f-87f8-40437ff96025/aufgabe_1_1_test.java?AWSAccessKeyId=AKIAJ6F26BFDPKHVPHIA&Expires=1365276756&Signature=YxUxdIF%2Bqz19%2Btl%2FACpd0qJwUIc%3D -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">package aufgabe_1_1;
 
 
 /**
@@ -48,7 +50,6 @@ public class Aufgabe_1_1_Test {
 	public static void getCycleTest() {
 		try{
 		Permutation p = new PermutationImplementation(1, 3, 2, 5, 4, 6);
-		p.toCycleString();
 
 		System.out.println("\nStarte getCycleTest()");
 
@@ -66,7 +67,7 @@ public class Aufgabe_1_1_Test {
 
 		System.out.print("Zeige Cycle 5 von (1,3,2,5,4,6): ");
 		System.out.println(p.cycle(5));
-	
+		
 		}
 		catch(IndexOutOfBoundsException e)
 	    {			
@@ -235,7 +236,7 @@ public static void main(String[] args) {
 		Aufgabe_1_1_Test.getCompositionTest();
 		Aufgabe_1_1_Test.testForAssociativity();
 		Aufgabe_1_1_Test.getFixpointsTest();
-
+		
 		System.out.println("\n::: Tests fuer PermutationGroup :::");
 		Aufgabe_1_1_Test.PermutationGroupConstruktorTest();
 
@@ -249,4 +250,4 @@ public static void main(String[] args) {
 		System.out.println(p.numFixpoints()); 
 		
 	}
-}
+}</pre></body></html>

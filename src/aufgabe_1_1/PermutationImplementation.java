@@ -1,6 +1,9 @@
-package aufgabe_1_1;
+
+<!-- saved from url=(0232)https://s3.amazonaws.com/data.teamlab.com/15/82/31/forum/22809/34460/f8993294-eb73-469f-87f8-40437ff96025/permutationimplementation.java?AWSAccessKeyId=AKIAJ6F26BFDPKHVPHIA&Expires=1365276756&Signature=ingl8FsFWMbY4gtcGCpJJBheJTY%3D -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">package aufgabe_1_1;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 /**
  * Wenn ihr was an dem Programm aendert, vergesst nicht die Versionsnummer
  * irgendwie zu aendern.
@@ -11,19 +14,14 @@ import java.util.ArrayList;
 
 class PermutationImplementation implements Permutation {
 
-public Liste<Integer> nana = new Liste<Integer>();
-	
-	
 	
 	private int[] valArr;
 	private int[] error = { 0, 0, 0, 0 };
 	boolean nap = false;
-	public Liste<Liste<Integer>> cyclenListe;
+	private Liste&lt;Liste&lt;Integer&gt;&gt; cyclenListe;
 
 	
 	public PermutationImplementation(int... i) {
-
-		this.cyclenListe = new Liste<Liste<Integer>>();
 
 		// sind Werte uebergeben worden?
 		if (i.length == 0) {
@@ -47,7 +45,7 @@ public Liste<Integer> nana = new Liste<Integer>();
 				// Nein
 				valArr = new int[i.length];
 
-				for (int j = 0; j < i.length; j++) {
+				for (int j = 0; j &lt; i.length; j++) {
 					valArr[j] = i[j];
 				}
 			}
@@ -66,7 +64,7 @@ public Liste<Integer> nana = new Liste<Integer>();
 		}
 
 		// Ist i groesser als die Permutation lang ist ?
-		if (i > valArr.length - 1) {
+		if (i &gt; valArr.length - 1) {
 			// Ja
 			System.out
 					.println("Fehler: Kein korrekter Wert fuer getFunctionValue uebergeben!");
@@ -78,14 +76,19 @@ public Liste<Integer> nana = new Liste<Integer>();
 		return valArr[i - 1];
 	}
 
-	public Liste<Integer> cycle(int val) throws IndexOutOfBoundsException {
+	public Liste&lt;Integer&gt; cycle(int val) throws IndexOutOfBoundsException {
 
+		this.toCycleString();
+		
 		if (nap) {
 			System.out.println("getCycle(): NaP!");
 			;
 		}
+		
+
+		
 		//TmpListe für ein cycle erstellen
-		Liste<Integer> tmpCycle = new Liste<Integer>();
+		Liste&lt;Integer&gt; tmpCycle = new Liste&lt;Integer&gt;();
 		
 		// gewünsche Cycle in die TmpListe abspeichern
 		tmpCycle.addAll(cyclenListe.get(val - 1));
@@ -109,7 +112,7 @@ public Liste<Integer> nana = new Liste<Integer>();
 		// (1,2,3) (3,1,2) (1,2,3)
 		//
 		// (3,1,2) (1,2,3) (2,3,1)
-		for (int i = 0; i < valArr.length; i++) {
+		for (int i = 0; i &lt; valArr.length; i++) {
 			tmp = valArr[i];
 			arrRes[tmp - 1] = i + 1;
 		}
@@ -134,8 +137,8 @@ public Liste<Integer> nana = new Liste<Integer>();
 		if (arrP1.length == arrP2.length) {
 			// Ja
 
-			// p2(3,5,1,4,2,) o p1(2,4,5,1,3) -> (5,4,2,3,1)
-			for (int i = 0; i < arrP1.length; i++) {
+			// p2(3,5,1,4,2,) o p1(2,4,5,1,3) -&gt; (5,4,2,3,1)
+			for (int i = 0; i &lt; arrP1.length; i++) {
 				tmp = arrP1[i];
 				arrRes[i] = arrP2[tmp - 1];
 			}
@@ -169,7 +172,7 @@ public Liste<Integer> nana = new Liste<Integer>();
 					// Ja
 
 					// Sind alle Elemente gleich?
-					for (int i = 0; i < valArr.length; i++) {
+					for (int i = 0; i &lt; valArr.length; i++) {
 						if (valArr[i] != tmp[i]) {
 							// Nein
 							return false;
@@ -192,7 +195,7 @@ public Liste<Integer> nana = new Liste<Integer>();
 		}
 	}
 
-	public Liste<Liste<Integer>> fixpoints() {
+	public Liste&lt;Liste&lt;Integer&gt;&gt; fixpoints() {
 
 		if (nap) {
 			System.out.println("getFixpoints(): NaP!");
@@ -207,15 +210,15 @@ public Liste<Integer> nana = new Liste<Integer>();
 		// (3,5,1,4,2)
 		
 		//äußere Temporäre-Liste, die mit dem return zurück gegeben wird.
-		Liste<Liste<Integer>> tmpList = new Liste<Liste<Integer>>();
+		Liste&lt;Liste&lt;Integer&gt;&gt; tmpList = new Liste&lt;Liste&lt;Integer&gt;&gt;();
 
-		for (int i = 0; i < valArr.length; i++) {
+		for (int i = 0; i &lt; valArr.length; i++) {
 			//Innere tmp, zwischenspeichert den aktuellen fixpoint
-			Liste<Integer> tmp = new Liste<Integer>();
+			Liste&lt;Integer&gt; tmp = new Liste&lt;Integer&gt;();
 			if (valArr[i] == i + 1) {
 				tmp.add(valArr[i]);
 			}
-			if (tmp.size() > 0) {
+			if (tmp.size() &gt; 0) {
 				//Fixpunkte werden abgesichert für die rückgabe.
 				tmpList.add(tmp);
 			}
@@ -227,7 +230,7 @@ public Liste<Integer> nana = new Liste<Integer>();
 
 		int count = 0;
 
-		for (int i = 0; i < valArr.length; i++) {
+		for (int i = 0; i &lt; valArr.length; i++) {
 			if (valArr[i] == i + 1) {
 				count++;
 			}
@@ -249,10 +252,10 @@ public Liste<Integer> nana = new Liste<Integer>();
 
 		StringBuilder sb = new StringBuilder("(");
 
-		for (int i = 0; i < valArr.length; i++) {
+		for (int i = 0; i &lt; valArr.length; i++) {
 			sb.append(valArr[i]);
 
-			if ((i >= 0) && (i < valArr.length - 1)) {
+			if ((i &gt;= 0) &amp;&amp; (i &lt; valArr.length - 1)) {
 				sb.append(",");
 			}
 		}
@@ -267,6 +270,8 @@ public Liste<Integer> nana = new Liste<Integer>();
 	
 	public String toCycleString() {
 
+		this.cyclenListe = new Liste&lt;Liste&lt;Integer&gt;&gt;();
+		
 		if (nap) {
 			return "toCycleString(): NaP!";
 		}
@@ -292,10 +297,10 @@ public Liste<Integer> nana = new Liste<Integer>();
 
 		// START
 		// Anfangen die Permutation zu durchlaufen
-		for (int i = 0; i < valArr.length; i++) {
+		for (int i = 0; i &lt; valArr.length; i++) {
 			
 			//Temporäre Liste für ein Cycle
-			Liste<Integer> tmpCycle = new Liste<Integer>();
+			Liste&lt;Integer&gt; tmpCycle = new Liste&lt;Integer&gt;();
 
 			// Wenn der Wert in Index i noch nicht geprueft wurde
 			if (!visited[i]) {
@@ -342,9 +347,9 @@ public Liste<Integer> nana = new Liste<Integer>();
 
 					// Gueltige Zyklus-Variablen (groesser 0) aus cycleBuffer
 					// nach cycleCandidates uebertragen
-					for (int j = 0; j < cycleCandidates.length; j++) {
-						for (int k = 0; k < cycleBuffer.length; k++) {
-							if (cycleBuffer[k] > 0) {
+					for (int j = 0; j &lt; cycleCandidates.length; j++) {
+						for (int k = 0; k &lt; cycleBuffer.length; k++) {
+							if (cycleBuffer[k] &gt; 0) {
 								cycleCandidates[j] = cycleBuffer[k];
 								j++;
 							} // if
@@ -356,8 +361,8 @@ public Liste<Integer> nana = new Liste<Integer>();
 
 						unsorted = false; // Bubble-Sort Flag zuruecksetzen
 
-						for (int k = 0; k < cycleCandidates.length - 1; k++) {
-							if (cycleCandidates[k] > cycleCandidates[k + 1]) {
+						for (int k = 0; k &lt; cycleCandidates.length - 1; k++) {
+							if (cycleCandidates[k] &gt; cycleCandidates[k + 1]) {
 
 								temp = cycleCandidates[k];
 								cycleCandidates[k] = cycleCandidates[k + 1];
@@ -369,7 +374,7 @@ public Liste<Integer> nana = new Liste<Integer>();
 
 					// Gefundene und sortierte cycleCandidates im StringBuilder
 					// ablegen
-					for (int j = 0; j < cycleCandidates.length; j++) {
+					for (int j = 0; j &lt; cycleCandidates.length; j++) {
 						sb.append(cycleCandidates[j]);
 						sb.append(" ");
 						
@@ -402,15 +407,19 @@ public Liste<Integer> nana = new Liste<Integer>();
 			} // if
 			
 			//Wenn die tmp-Liste nicht leer ist, dann wird sie in der CycleListe abgesichert.
-			if (tmpCycle.size() > 0) {
+			if (tmpCycle.size() &gt; 0) {
 				cyclenListe.add(tmpCycle);
 			}
 
 		} // for
 
 		return sb.toString();
-	} 
+	}
 
+	
+
+	
+	
 } 
 
 
@@ -419,7 +428,7 @@ public Liste<Integer> nana = new Liste<Integer>();
 
 // ToString Methoden von ArrayList Redefinierten
 
-class Liste<E> extends ArrayList<E>{
+class Liste&lt;E&gt; extends ArrayList&lt;E&gt;{
 	
 	@Override
 	public String toString(){
@@ -437,8 +446,6 @@ class Liste<E> extends ArrayList<E>{
 		return ret.append( ")").toString();
 		
 	}
-	
-	
-	
-	
 }
+
+</pre></body></html>
