@@ -1,9 +1,10 @@
 
-<!-- saved from url=(0232)https://s3.amazonaws.com/data.teamlab.com/15/82/31/forum/22809/34460/f8993294-eb73-469f-87f8-40437ff96025/permutationimplementation.java?AWSAccessKeyId=AKIAJ6F26BFDPKHVPHIA&Expires=1365276756&Signature=ingl8FsFWMbY4gtcGCpJJBheJTY%3D -->
+<!-- saved from url=(0234)https://s3.amazonaws.com/data.teamlab.com/15/82/31/forum/22809/34460/f8993294-eb73-469f-87f8-40437ff96025/permutationimplementation_1.java?AWSAccessKeyId=AKIAJ6F26BFDPKHVPHIA&Expires=1365276756&Signature=QTKetOhDgfDkqBMwIl0Ft7PpHuw%3D -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">package aufgabe_1_1;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
+
 /**
  * Wenn ihr was an dem Programm aendert, vergesst nicht die Versionsnummer
  * irgendwie zu aendern.
@@ -14,13 +15,11 @@ import java.util.TreeMap;
 
 class PermutationImplementation implements Permutation {
 
-	
 	private int[] valArr;
 	private int[] error = { 0, 0, 0, 0 };
 	boolean nap = false;
 	private Liste&lt;Liste&lt;Integer&gt;&gt; cyclenListe;
 
-	
 	public PermutationImplementation(int... i) {
 
 		// sind Werte uebergeben worden?
@@ -79,17 +78,15 @@ class PermutationImplementation implements Permutation {
 	public Liste&lt;Integer&gt; cycle(int val) throws IndexOutOfBoundsException {
 
 		this.toCycleString();
-		
+
 		if (nap) {
 			System.out.println("getCycle(): NaP!");
 			;
 		}
-		
 
-		
-		//TmpListe für ein cycle erstellen
+		// TmpListe für ein cycle erstellen
 		Liste&lt;Integer&gt; tmpCycle = new Liste&lt;Integer&gt;();
-		
+
 		// gewünsche Cycle in die TmpListe abspeichern
 		tmpCycle.addAll(cyclenListe.get(val - 1));
 
@@ -200,7 +197,7 @@ class PermutationImplementation implements Permutation {
 		if (nap) {
 			System.out.println("getFixpoints(): NaP!");
 		}
-		
+
 		// Wenn ein Wert aus der Permutation mit dem
 		// gegenueberliegendem Wert aus der Id uebereinstimmt,
 		// ist es ein Fixpoint.
@@ -208,18 +205,18 @@ class PermutationImplementation implements Permutation {
 		// (1,2,3,4,5)
 		// ( | )
 		// (3,5,1,4,2)
-		
-		//äußere Temporäre-Liste, die mit dem return zurück gegeben wird.
+
+		// äußere Temporäre-Liste, die mit dem return zurück gegeben wird.
 		Liste&lt;Liste&lt;Integer&gt;&gt; tmpList = new Liste&lt;Liste&lt;Integer&gt;&gt;();
 
 		for (int i = 0; i &lt; valArr.length; i++) {
-			//Innere tmp, zwischenspeichert den aktuellen fixpoint
+			// Innere tmp, zwischenspeichert den aktuellen fixpoint
 			Liste&lt;Integer&gt; tmp = new Liste&lt;Integer&gt;();
 			if (valArr[i] == i + 1) {
 				tmp.add(valArr[i]);
 			}
 			if (tmp.size() &gt; 0) {
-				//Fixpunkte werden abgesichert für die rückgabe.
+				// Fixpunkte werden abgesichert für die rückgabe.
 				tmpList.add(tmp);
 			}
 		}
@@ -265,13 +262,10 @@ class PermutationImplementation implements Permutation {
 		return sb.toString();
 	}
 
-	
-	
-	
 	public String toCycleString() {
 
 		this.cyclenListe = new Liste&lt;Liste&lt;Integer&gt;&gt;();
-		
+
 		if (nap) {
 			return "toCycleString(): NaP!";
 		}
@@ -298,8 +292,8 @@ class PermutationImplementation implements Permutation {
 		// START
 		// Anfangen die Permutation zu durchlaufen
 		for (int i = 0; i &lt; valArr.length; i++) {
-			
-			//Temporäre Liste für ein Cycle
+
+			// Temporäre Liste für ein Cycle
 			Liste&lt;Integer&gt; tmpCycle = new Liste&lt;Integer&gt;();
 
 			// Wenn der Wert in Index i noch nicht geprueft wurde
@@ -377,8 +371,8 @@ class PermutationImplementation implements Permutation {
 					for (int j = 0; j &lt; cycleCandidates.length; j++) {
 						sb.append(cycleCandidates[j]);
 						sb.append(" ");
-						
-						//Cyclen paare in die tmp-Liste absichern
+
+						// Cyclen paare in die tmp-Liste absichern
 						tmpCycle.add(cycleCandidates[j]);
 					} // for
 
@@ -394,8 +388,8 @@ class PermutationImplementation implements Permutation {
 				// StringBuilder ablegen
 				if (!cycle) {
 					sb.append(valArr[i]);
-					
-					//Fixpunkte in die tmp-Liste sichern.
+
+					// Fixpunkte in die tmp-Liste sichern.
 					tmpCycle.add(valArr[i]);
 				} // if
 
@@ -405,8 +399,9 @@ class PermutationImplementation implements Permutation {
 				counter = 0;
 				cycleBuffer = new int[valArr.length];
 			} // if
-			
-			//Wenn die tmp-Liste nicht leer ist, dann wird sie in der CycleListe abgesichert.
+
+			// Wenn die tmp-Liste nicht leer ist, dann wird sie in der
+			// CycleListe abgesichert.
 			if (tmpCycle.size() &gt; 0) {
 				cyclenListe.add(tmpCycle);
 			}
@@ -416,36 +411,82 @@ class PermutationImplementation implements Permutation {
 		return sb.toString();
 	}
 
-	
+	public TypeMap&lt;Integer, Integer&gt; cycleType() {
 
-	
-	
-} 
+		if (nap) {
+			System.out.println("NaP!");
+		}
+		
+		// erstelle alle cycles
+		this.toCycleString();
+		//TreeMap erstellen, Key als Basis und Value für den Exponent
+		TypeMap&lt;Integer, Integer&gt; retMap = new TypeMap&lt;Integer, Integer&gt;();
+		int tmpIndex = 0;
 
+		for (int i = 0; i &lt; this.cyclenListe.size(); i++) {
+			// hole cycle länge und sicher sie in tmpIndex ab
+			tmpIndex = cyclenListe.get(i).size();
+			
+			//Wenn die Cycle Länge vorhanden ist, dann....
+			if (retMap.containsKey(tmpIndex)) {
+				//erhöhe Value um 1 (Exponent)
+				retMap.put(tmpIndex, (retMap.get(tmpIndex)) + 1);
+			} else {
+				//Füge neue Key (Basis) hinzu
+				retMap.put(tmpIndex, 1);
+			}
 
+		}
 
+		return retMap;
 
+	}
+
+}
 
 // ToString Methoden von ArrayList Redefinierten
 
-class Liste&lt;E&gt; extends ArrayList&lt;E&gt;{
-	
+class Liste&lt;E&gt; extends ArrayList&lt;E&gt; {
+
 	@Override
-	public String toString(){
-		
+	public String toString() {
+
 		StringBuilder ret = new StringBuilder();
-		
+
 		ret.append("(");
-		 
-		for (E index : this){ 
-			ret.append(index + " ") ;
-			}
-		
-		ret.deleteCharAt(ret.length()-1);
-		
-		return ret.append( ")").toString();
-		
+
+		for (E index : this) {
+			ret.append(index + " ");
+		}
+
+		ret.deleteCharAt(ret.length() - 1);
+
+		return ret.append(")").toString();
+
 	}
 }
 
+// Redifinierung der toString-Methode der TreeMap
+class TypeMap&lt;K, V&gt; extends TreeMap&lt;K, V&gt; {
+	@Override
+	public String toString() {
+
+		StringBuilder ret = new StringBuilder();
+
+		ret.append("(");
+
+		for (int i = 1; i &lt;= this.size(); i++) {
+
+			ret.append(this.keySet().toArray(new Integer[this.size()])[i - 1]
+					+ "^"
+					+ this.get(this.keySet().toArray(new Integer[this.size()])[i - 1])
+					+ " ");
+		}
+
+		ret.deleteCharAt(ret.length() - 1);
+
+		return ret.append(")").toString();
+
+	}
+}
 </pre></body></html>
