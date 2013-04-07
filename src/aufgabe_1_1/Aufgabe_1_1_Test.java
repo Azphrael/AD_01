@@ -1,9 +1,10 @@
 package aufgabe_1_1;
 
+
 /**
  * Wenn ihr was an dem Programm aendert, vergesst nicht die Versionsnummer
  * irgendwie zu aendern.
- * 
+ *
  * @author Gruppe 3
  * @version 1.00
  */
@@ -16,7 +17,8 @@ public class Aufgabe_1_1_Test {
 
         System.out.println("\nStarte toStringTest()");
 
-        System.out.print("Ausgabe einer Permutation mit den Werten 1,2,3,4,5,6: ");
+        System.out
+                .print("Ausgabe einer Permutation mit den Werten 1,2,3,4,5,6: ");
         System.out.println(p);
     }
 
@@ -25,7 +27,8 @@ public class Aufgabe_1_1_Test {
 
         System.out.println("\nStarte toCycleStringTest()");
 
-        System.out.print("Ausgabe einer Permutation mit den Werten 1,2,3,4,5,6: ");
+        System.out
+                .print("Ausgabe einer Permutation mit den Werten 1,2,3,4,5,6: ");
         p = new PermutationImplementation(1, 2, 3, 4, 5, 6);
         System.out.println(p.toCycleString());
 
@@ -43,29 +46,36 @@ public class Aufgabe_1_1_Test {
     }
 
     public static void getCycleTest() {
-        Permutation p = new PermutationImplementation(1, 3, 2, 5, 4, 6);
+        try{
+            Permutation p = new PermutationImplementation(1, 3, 2, 5, 4, 6);
 
-        System.out.println("\nStarte getCycleTest()");
+            System.out.println("\nStarte getCycleTest()");
 
-        System.out.print("Zeige Cycle 1 von (1,3,2,5,4,6): ");
-        System.out.println(p.getCycle(1));
+            System.out.print("Zeige Cycle 1 von (1,3,2,5,4,6): ");
 
-        System.out.print("Zeige Cycle 2 von (1,3,2,5,4,6): ");
-        System.out.println(p.getCycle(2));
+            System.out.println(p.cycle(1));
+            System.out.print("Zeige Cycle 2 von (1,3,2,5,4,6): ");
+            System.out.println(p.cycle(2));
 
-        System.out.print("Zeige Cycle 3 von (1,3,2,5,4,6): ");
-        System.out.println(p.getCycle(3));
+            System.out.print("Zeige Cycle 3 von (1,3,2,5,4,6): ");
+            System.out.println(p.cycle(3));
 
-        System.out.print("Zeige Cycle 4 von (1,3,2,5,4,6): ");
-        System.out.println(p.getCycle(4));
+            System.out.print("Zeige Cycle 4 von (1,3,2,5,4,6): ");
+            System.out.println(p.cycle(4));
 
-        System.out.print("Zeige Cycle 5 von (1,3,2,5,4,6): ");
-        System.out.println(p.getCycle(5));
+            System.out.print("Zeige Cycle 5 von (1,3,2,5,4,6): ");
+            System.out.println(p.cycle(5));
+
+        }
+        catch(IndexOutOfBoundsException e)
+        {
+            System.out.print("Keine weiteren cyclen vorhanden!!!");
+        }
     }
 
     public static void equalsTest() {
         Permutation p1 = new PermutationImplementation(1, 2, 3, 4, 5, 6);
-        Permutation p2 = new PermutationImplementation(1, 2, 3, 4, 5, 6, 8);
+        Permutation p2 = new PermutationImplementation(1, 2, 3, 4, 5, 6);
         String s = "test";
 
         System.out.println("\nStarte equalsTest()");
@@ -73,14 +83,17 @@ public class Aufgabe_1_1_Test {
         System.out.print("Vergleich mit String: ");
         System.out.println(p1.equals(s));
 
-        System.out.print("Vergleich mit Permutation unterschiedlicher Laenge: ");
+        System.out
+                .print("Vergleich mit Permutation unterschiedlicher Laenge: ");
         System.out.println(p1.equals(p2));
 
-        System.out.print("Vergleich mit Permutation gleicher Laenge " + "und unterschiedlichem Inhalt: ");
+        System.out.print("Vergleich mit Permutation gleicher Laenge "
+                + "und unterschiedlichem Inhalt: ");
         p2 = new PermutationImplementation(1, 2, 3, 4, 6, 5);
         System.out.println(p1.equals(p2));
 
-        System.out.print("Vergleich mit Permutation gleicher Laenge " + "und gleichem Inhalt: ");
+        System.out.print("Vergleich mit Permutation gleicher Laenge "
+                + "und gleichem Inhalt: ");
         p2 = new PermutationImplementation(1, 2, 3, 4, 5, 6);
         System.out.println(p1.equals(p2));
     }
@@ -91,10 +104,10 @@ public class Aufgabe_1_1_Test {
         System.out.println("\nStarte getInverseTest()");
 
         System.out.print("Zeige inverse Permutation von (2,4,5,1,3): ");
-        System.out.println(p.getInverse());
+        System.out.println(p.inverse());
 
         System.out.print("Zeige davon inverse Permutation: ");
-        System.out.println(p.getInverse().getInverse());
+        System.out.println(p.inverse().inverse());
     }
 
     public static void getCompositionTest() {
@@ -104,18 +117,20 @@ public class Aufgabe_1_1_Test {
         System.out.println("\nStarte getCompositionTest()");
 
         System.out.print("Zeige Kompostion von (2,4,5,1,3) mit (3,5,1,4,2): ");
-        System.out.println(p1.getComposition(p2));
+        System.out.println(p1.composition(p2));
 
-        System.out.print("Zeige Kompostion von (2,4,5,1,3) mit Identitaet (1,2,3,4,5): ");
+        System.out
+                .print("Zeige Kompostion von (2,4,5,1,3) mit Identitaet (1,2,3,4,5): ");
         p2 = new PermutationImplementation(1, 2, 3, 4, 5);
-        System.out.println(p1.getComposition(p2));
+        System.out.println(p1.composition(p2));
 
         System.out.print("Zeige Komposition von (2,4,5,1,3) mit Inverse: ");
-        System.out.println(p1.getComposition(p1.getInverse()));
+        System.out.println(p1.composition(p1.inverse()));
 
-        System.out.print("Zeige Kompostion von (2,4,5,1,3) mit Permutation ungleicher Laenge (3,5,1,4,2,6): ");
+        System.out
+                .print("Zeige Kompostion von (2,4,5,1,3) mit Permutation ungleicher Laenge (3,5,1,4,2,6): ");
         p2 = new PermutationImplementation(3, 5, 1, 4, 2, 6);
-        System.out.println(p1.getComposition(p2));
+        System.out.println(p1.composition(p2));
     }
 
     public static void testForAssociativity() {
@@ -127,12 +142,12 @@ public class Aufgabe_1_1_Test {
         System.out.println("\nStarte testForAssociativity()");
 
         System.out.print("Komponiere ((3,2,1) o (2,3,1)) o (1,3,2): ");
-        pTmp = p2.getComposition(p3);
-        System.out.println(p1.getComposition(pTmp));
+        pTmp = p2.composition(p3);
+        System.out.println(p1.composition(pTmp));
 
         System.out.print("Komponiere (3,2,1) o ((2,3,1) o (1,3,2)): ");
-        pTmp = p1.getComposition(p2);
-        System.out.println(pTmp.getComposition(p3));
+        pTmp = p1.composition(p2);
+        System.out.println(pTmp.composition(p3));
     }
 
     public static void checkForMultipleNumberTest() {
@@ -140,7 +155,8 @@ public class Aufgabe_1_1_Test {
 
         System.out.println("\nStarte testCheckForMultipleNumber()");
 
-        System.out.print("Erstelle Permutation ohne doppelte Werte (1,2,3,4,5,6): ");
+        System.out
+                .print("Erstelle Permutation ohne doppelte Werte (1,2,3,4,5,6): ");
         p = new PermutationImplementation(1, 2, 3, 4, 5, 6);
         System.out.println(p);
 
@@ -148,11 +164,13 @@ public class Aufgabe_1_1_Test {
         p = new PermutationImplementation(1);
         System.out.println(p);
 
-        System.out.print("Erstelle lange Permutation (1,2,3,4,5,6,7,8,9,10,11): ");
+        System.out
+                .print("Erstelle lange Permutation (1,2,3,4,5,6,7,8,9,10,11): ");
         p = new PermutationImplementation(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
         System.out.println(p);
 
-        System.out.print("Erstelle Permutation mit einem doppelten Wert (1,2,3,4,5,6,7,8,9,10,1): ");
+        System.out
+                .print("Erstelle Permutation mit einem doppelten Wert (1,2,3,4,5,6,7,8,9,10,1): ");
         p = new PermutationImplementation(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1);
         System.out.println(p);
     }
@@ -189,18 +207,42 @@ public class Aufgabe_1_1_Test {
 
         System.out.print("Zeige Fixpunkte von Permutation (1): ");
         p = new PermutationImplementation(1);
-        System.out.println(p.getFixpoints());
+        System.out.println(p.fixpoints());
 
         System.out.print("Zeige Fixpunkte von Permutation (1,2,3,4): ");
         p = new PermutationImplementation(1, 2, 3, 4);
-        System.out.println(p.getFixpoints());
+        System.out.println(p.fixpoints());
 
         System.out.print("Zeige Fixpunkte von Permutation (3,5,1,4,2): ");
         p = new PermutationImplementation(3, 5, 1, 4, 2);
-        System.out.println(p.getFixpoints());
+        System.out.println(p.fixpoints());
     }
 
+    public static void getOrderTest() {
+        Permutation p;
+
+        System.out.println("Tests fuer Order :::");
+
+        p = new PermutationImplementation(2,1,3,4,6,7,10,8,9,5);
+
+        System.out.println(p.toCycleString());
+        System.out.println(p.cycleType());
+        System.out.println(p.cycle(0) + ", " + p.cycle(5));
+        System.out.println(p.order());
+        System.out.println(p.pow(-1));
+        System.out.println(p.pow(0));
+        System.out.println(p.pow(1));
+        System.out.println(p.pow(2));
+        System.out.println(p.pow(3));
+        System.out.println(p.pow(4));
+        System.out.println(p.pow(5));
+        System.out.println(p.pow(10000000));
+        System.out.println(p.pow(-100000));
+    }
+
+
     public static void main(String[] args) {
+
         System.out.println("\n::: Test fuer Util :::");
         Aufgabe_1_1_Test.checkForMultipleNumberTest();
         Aufgabe_1_1_Test.calculateFacultyTest();
@@ -226,5 +268,8 @@ public class Aufgabe_1_1_Test {
         System.out.println(pgrp.contains(p));
 
         System.out.println(p.numFixpoints());
+
+        Aufgabe_1_1_Test.getOrderTest();
+
     }
 }
