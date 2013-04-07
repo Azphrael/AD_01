@@ -441,7 +441,7 @@ class PermutationImplementation implements Permutation {
 
 
     /**
-     * berrechnet die order einer Permutation
+     * berrechnet die order einer Permutation mithilfe des KgVs
      */
     public int order(){
         this.toCycleString();
@@ -456,8 +456,8 @@ class PermutationImplementation implements Permutation {
 
     /**
      * berrechnet das kleinste gemeinsame vielfache des Arrays
-     * @param numbers
-     * @return
+     * @param numbers : Zyklenlist der Permutaion
+     * @return KgV der Zyklen => Ordnung der Permutation
      */
     private int calckgv(ArrayList<Integer> numbers) {
         if(numbers == null){
@@ -492,6 +492,15 @@ class PermutationImplementation implements Permutation {
     }
 
 
+	/**
+	 * komponiert die Permutation so oft in Hoehe des angegebenen Wertes
+	 * @param exp : Anzahl der auszuführenden Kompositionen
+	 * @return : Kopmonierte Permutaion
+	 * 
+	 * Um die Anzahl der auszuführenden Kompositionsschritte zu reduzieren (und negativ-Ganze Werte zu akzeptieren)
+	 * wird der Exponent wie folgt verkleinert :
+	 * (Ordnung + ((Exponent - 1) % Ordnung) % Ordnung)
+	 */
     public Permutation pow(int exp){
         if(exp == 0){
             return null;
