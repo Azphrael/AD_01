@@ -1,8 +1,6 @@
 package aufgabe_1_1;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.TreeMap;
 
 
 /**
@@ -37,4 +35,8 @@ interface Permutation {
     public int numFixpoints();
 
     public TypeMap<Integer, Integer> cycleType(); // Aufgabe 1.2 Seite 3 Methode 1
+
+    public int order();
+
+    public Permutation pow(int exp);
 }

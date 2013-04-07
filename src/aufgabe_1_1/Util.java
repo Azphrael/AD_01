@@ -57,4 +57,17 @@ public class Util {
         arr[index1] = arr[index2];
         arr[index2] = tmp;
     }
+
+    public static String parseExp(String exp) {
+
+        char[] expStrings = {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'};
+        StringBuffer ret = new StringBuffer();
+        if (exp.length() == 1 && exp.equals("1")) {
+            return "";
+        }
+        for (int i = 0; i < exp.length(); i++) {
+            ret.append(expStrings[Integer.parseInt(exp.substring(i, i+1))]);
+        }
+        return ret.toString();
+    }
 }

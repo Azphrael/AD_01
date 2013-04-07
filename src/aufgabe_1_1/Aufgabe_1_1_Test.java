@@ -218,6 +218,28 @@ public class Aufgabe_1_1_Test {
         System.out.println(p.fixpoints());
     }
 
+    public static void getOrderTest() {
+        Permutation p;
+
+        System.out.println("Tests fuer Order :::");
+
+        p = new PermutationImplementation(2,1,3,4,6,7,10,8,9,5);
+
+        System.out.println(p.toCycleString());
+        System.out.println(p.cycleType());
+        System.out.println(p.cycle(0) + ", " + p.cycle(5));
+        System.out.println(p.order());
+        System.out.println(p.pow(-1));
+        System.out.println(p.pow(0));
+        System.out.println(p.pow(1));
+        System.out.println(p.pow(2));
+        System.out.println(p.pow(3));
+        System.out.println(p.pow(4));
+        System.out.println(p.pow(5));
+        System.out.println(p.pow(10000000));
+        System.out.println(p.pow(-100000));
+    }
+
 
     public static void main(String[] args) {
 
@@ -246,6 +268,8 @@ public class Aufgabe_1_1_Test {
         System.out.println(pgrp.contains(p));
 
         System.out.println(p.numFixpoints());
+
+        Aufgabe_1_1_Test.getOrderTest();
 
     }
 }

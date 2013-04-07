@@ -79,14 +79,13 @@ class PermutationImplementation implements Permutation {
 
         if (nap) {
             System.out.println("getCycle(): NaP!");
-            ;
         }
 
         // TmpListe für ein cycle erstellen
         Liste<Integer> tmpCycle = new Liste<Integer>();
 
         // gewünsche Cycle in die TmpListe abspeichern
-        tmpCycle.addAll(cyclenListe.get(val - 1));
+        tmpCycle.addAll(cyclenListe.get(val));
 
         return tmpCycle;
 
@@ -440,6 +439,72 @@ class PermutationImplementation implements Permutation {
 
     }
 
+
+    /**
+     * berrechnet die order einer Permutation
+     */
+    public int order(){
+        this.toCycleString();
+        Liste<Liste<Integer>> list = this.cyclenListe;
+        Liste<Integer> temp = new Liste<Integer>();
+        for(int i = 0; i < list.size(); i++){
+            temp.add(list.get(i).size());
+        }
+        return calckgv(temp);
+    }
+
+
+    /**
+     * berrechnet das kleinste gemeinsame vielfache des Arrays
+     * @param numbers
+     * @return
+     */
+    private int calckgv(ArrayList<Integer> numbers) {
+        if(numbers == null){
+            throw new NullPointerException();
+        }
+
+        int kgv = 1;
+        int exp = 0;
+        int n = 2;
+        int count = 0;
+
+        while(numbers.size() > 0){
+            for(int i = 0; i < numbers.size(); i++){
+                while(numbers.get(i) % n == 0){
+                    numbers.set(i, numbers.get(i) / n);
+                    count++;
+                }
+                if(count > exp){
+                    exp = count;
+                }
+                count = 0;
+                if(numbers.get(i) < 2){
+                    numbers.remove(i);
+                    i--;
+                }
+            }
+            kgv *= Math.pow(n, exp);
+            n++;
+            exp = 0;
+        }
+        return kgv;
+    }
+
+
+    public Permutation pow(int exp){
+        if(exp == 0){
+            return null;
+        }
+        int order = order();
+        Permutation p = new PermutationImplementation(this.valArr);
+        exp = (order + ((exp - 1) % order)) % order;
+        for(int i = 0; i < exp; i++){
+            p = p.composition(this);
+        }
+        return p;
+    }
+
 }
 
 // ToString Methoden von ArrayList Redefinierten
@@ -475,9 +540,8 @@ class TypeMap<K, V> extends TreeMap<K, V> {
 
         for (int i = 1; i <= this.size(); i++) {
 
-            ret.append(this.keySet().toArray(new Integer[this.size()])[i - 1]
-                    + "^"
-                    + this.get(this.keySet().toArray(new Integer[this.size()])[i - 1])
+            ret.append(this.keySet().toArray(new Integer[this.size()])[i - 1].toString()
+                    + Util.parseExp(this.get(this.keySet().toArray(new Integer[this.size()])[i - 1]).toString())
                     + " ");
         }
 
